@@ -1,57 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 | %Directory</title>
     <style>
         body {
             background: url('applications.gif') #000000 repeat;
             color: #e1ff00;
-            font-family: 'Courier New';
-            font-size: 22px;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
             margin: 0;
-            padding: 0;
-            display:grid;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
             overflow: hidden;
         }
-
-  
+        
         a {
             color: #eeff00;
+            text-decoration: none;
+            display: inline-block;
+            margin: 2px;
+            text-shadow: 0 0 5px #eeff00, 0 0 10px #ffea00, 0 0 15px #ffaa00;
+            transition: text-shadow 0.3s ease-in-out;
         }
-        a:active {
+
+        a:hover {
             color: #ffffff;
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
         }
-        blink {
-            animation: blink 4s steps(100, start) infinite;
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+
+        .menu img {
+            vertical-align: middle;
+            margin: 2px;
         }
-      
     </style>
 </head>
 <body>
-    <pre><code>
-      
-<CENTER><A HREF="me.html"><BLINK>ARNAV GAWAS</BLINK></A>   
-  <A HREF="me.html"><BLINK>sshing.hqx</BLINK></A>
+    <div class="menu">
+        <a href="me.html" class="blink">ARNAV GAWAS</a>  
+        <a href="me.html" class="blink">sshing.hqx</a>
 
-        <A HREF="home.html" ><IMG ALIGN=absmiddle SRC="indexdot2.gif"  VSPACE=15 HSPACE=0 border=0></A>
-<A HREF="profile.html"><BLINK>PROFILE</BLINK></A><A HREF="profile.html"><IMG ALIGN=absmiddle SRC="indexvl.gif"  VSPACE=0 HSPACE=0 border=0></A>                    
-  <A HREF="donut.html"><BLINK>BAGEL LAND</BLINK></A>  
- <A HREF="donut.html"><BLINK>43.1271602,-77.5648625</BLINK></A>
-   <A HREF="donut.html"><IMG ALIGN=absmiddle SRC="indexgo.png" VSPACE=15 HSPACE=0 border=0></A>
-  <A HREF="s.html"><BLINK>SURGERY</BLINK></A>                   
-   <A HREF="havoc/index.html"><IMG SRC="indexdot2.gif" VSPACE=0 HSPACE=0 border=0></A>                      
-                <A HREF="zxcvbindex.html">"AXO=</A>     
-            <A HREF="zxcvbindex.html"><IMG SRC="indexgo.png" VSPACE=0 HSPACE=0 border=0></A>
- <A HREF="-x/index.html">-X</A>                             
- <A HREF="profile.html" ><IMG ALIGN=absmiddle SRC="indexvl.gif"  VSPACE=10 HSPACE=0 border=0></A>       <A HREF="baklava/index.html"><IMG ALIGN=absmiddle SRC="indexdot2.gif"  VSPACE=15 HSPACE=0 border=0></A><A HREF="baklava/index.html"></A>   
- </div>
-<A HREF="gameolife.html"><BLINK>CELLULARHEX</BLINK></A>   
-  <A HREF="gameolife.html"><BLINK>life.hqx</BLINK></A>
-    </code></pre>
+        <a href="profile.html"><img src="indexdot2.gif" alt="Home"></a>
+
+        <a href="profile.html" class="blink">PROFILE</a>
+        <a href="donut.html"><img src="indexvl.gif" alt="Profile"></a>
+
+        <a href="donut.html" class="blink">BAGEL LAND</a>
+        <a href="donut.html" class="blink">43.1271602,-77.5648625</a>
+        <a href="s.html"><img src="indexgo.png" alt="Donut"></a>
+
+        <a href="s.html" class="blink">SURGERY</a>
+        <a href="axo.html"><img src="indexdot2.gif" alt="Havoc"></a>
+
+        <a href="axo.html">"AXO=</a>
+        <a href="axo.html"><img src="indexgo.png" alt="AXO"></a>
+
+        <a href="-x/index.html">-X</a>
+        <a href="profile.html"><img src="indexvl.gif" alt="Profile"></a>
+        <a href="gameolife.html"><img src="indexdot2.gif" alt="Baklava"></a>
+
+        <a href="gameolife.html" class="blink">CELLULARHEX</a>
+        <a href="gameolife.html" class="blink">life.hqx</a>
+    </div>
 </body>
 </html>
