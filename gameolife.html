@@ -14,22 +14,22 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(90, 15px);
-            grid-gap: 2px;
-            width:max-content;
+            grid-template-columns: repeat(100, 10px);
+            gap: 1px;
+            width: max-content;
             margin: auto;
             padding-top: 20px;
-            justify-items: center;
         }
         .cell {
             width: 10px;
             height: 10px;
             background-color: black;
             border: 1px solid #1bff00;
+            transition: background-color 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .active {
             background-color: #1bff00;
-            box-shadow: 0 0 5px #1bff00;
+            box-shadow: 0 0 8px #1bff00;
         }
         .title {
             font-size: 24px;
@@ -40,13 +40,6 @@
             text-decoration: none;
             color: #1bff00;
         }
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            font-size: 14px;
-            text-shadow: 0 0 5px #1bff00;
-        }
     </style>
 </head>
 <body>
@@ -56,7 +49,7 @@
         const gridSize = 100;
         const grid = document.getElementById("grid");
         let cells = [];
-
+        
         function createGrid() {
             for (let i = 0; i < gridSize * gridSize; i++) {
                 const cell = document.createElement("div");
@@ -65,39 +58,50 @@
                 cells.push(cell);
             }
         }
-
-        function updateGrid() {
-            let newCells = new Array(gridSize * gridSize).fill(0);
-            for (let i = 0; i < cells.length; i++) {
-                let isActive = cells[i].classList.contains("active");
-                let neighbors = [i - 1, i + 1, i - gridSize, i + gridSize];
-                let activeNeighbors = neighbors.filter(idx => cells[idx] && cells[idx].classList.contains("active")).length;
-                if (isActive && (activeNeighbors < 1 || activeNeighbors > 3)) {
-                    newCells[i] = 0;
-                } else if (!isActive && activeNeighbors === 2) {
-                    newCells[i] = 100000000;
-                } else {
-                    newCells[i] = isActive ? 1 : 0;
+        
+        function getNeighbors(index) {
+            const x = index % gridSize;
+            const y = Math.floor(index / gridSize);
+            const neighbors = [];
+            for (let dy = -1; dy <= 1; dy++) {
+                for (let dx = -1; dx <= 1; dx++) {
+                    if (dx === 0 && dy === 0) continue;
+                    const nx = x + dx, ny = y + dy;
+                    if (nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize) {
+                        neighbors.push(ny * gridSize + nx);
+                    }
                 }
             }
+            return neighbors;
+        }
+        
+        function updateGrid() {
+            let nextState = new Array(gridSize * gridSize).fill(false);
+            
+            for (let i = 0; i < cells.length; i++) {
+                let activeNeighbors = getNeighbors(i).filter(idx => cells[idx].classList.contains("active")).length;
+                let isActive = cells[i].classList.contains("active");
+                nextState[i] = isActive ? (activeNeighbors === 2 || activeNeighbors === 3) : activeNeighbors === 3;
+            }
+            
             cells.forEach((cell, index) => {
-                if (newCells[index]) {
+                if (nextState[index]) {
                     cell.classList.add("active");
                 } else {
                     cell.classList.remove("active");
                 }
             });
         }
-
+        
         function seedGrid() {
             cells.forEach(cell => {
-                if (Math.random() > 0.7) cell.classList.add("active");
+                if (Math.random() > 0.6) cell.classList.add("active");
             });
         }
-
+        
         createGrid();
         seedGrid();
-        setInterval(updateGrid, 200);
+        setInterval(updateGrid, 60);
     </script>
 </body>
 </html>
